@@ -23,7 +23,7 @@ for i in range(9):
     blockrect.append(gridBlock.get_rect(center= (blockcord[i])))
 
 #Variables
-grid= [False]*9
+grid= [0]*9
 #Game loop
 def main():
     while True:
@@ -36,15 +36,19 @@ def main():
             if blockrect[i].collidepoint(mouse_pos):
                 if pg.key.get_pressed()[pg.K_x]:                
                     crossrect[i] = cross.get_rect(center = (blockcord[i]))
+                    grid[i] = [crossrect[i] , 0]
                 elif pg.key.get_pressed()[pg.K_o]:
                     circlerect[i] = circle.get_rect(center = (blockcord[i]))
+                    grid[i] = [circlerect[i], 1]
 
         for i in range(9):
-            if crossrect[i] != 0:
-                win.blit(cross, crossrect[i])
-            if circlerect[i] != 0:
-                win.blit(circle,circlerect[i])
+            if grid[i] != 0:
+                if grid[i][1] == 0:
+                    win.blit(cross, crossrect[i])
+                elif grid[i][1] == 1:
+                    win.blit(circle,circlerect[i])
         
+        print(grid)
         pg.display.update()
         Clock.tick(60)
 

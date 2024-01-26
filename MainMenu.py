@@ -11,7 +11,7 @@ pg.display.set_icon(icon)
 bg = pg.Surface((720,720))
 bg.fill("black")
 #Main menu objects
-headertxt = pg.transform.smoothscale(pg.image.load("Logo.png"),(557,123))
+headertxt = pg.transform.smoothscale(pg.image.load("Logo.png"),(642,142))
 playtxt = pg.font.Font("Exo_2\static\Exo2-SemiBold.ttf", 90)
 playtxt = playtxt.render("PLAY", True, "black")
 playtxtsurface = pg.Surface((300,100))
@@ -23,15 +23,17 @@ quittxt = quittxt.render("QUIT", True, "black")
 quittxtsurface = pg.Surface((300,100))
 quittxtsurface.fill("darkorchid2")
 quittxtsurfacerect = playtxtsurface.get_rect(center = (360,610))
+
+
 run = 1
-bgmusic = pg.mixer.Sound("MainMenuMusic.mp3")
+bgmusic = pg.mixer.Sound("y2mate.com - Single Player Menu  Mario Kart 7.mp3")
 volume = 0.3
 volumetxt = pg.font.Font("Exo_2\static\Exo2-SemiBold.ttf", 20)
 bgmusic.play(-1)
 print("Controls: m to mute \ndown arrow - reduce volume\nup arrow - increase volume\n X - place X cross \n O - place O circle ")
 while run:
     win.blit(bg,(0,0))
-    win.blit(headertxt,(90,200))
+    win.blit(headertxt,(50,200))
     win.blit(playtxtsurface,playtxtsurfacerect)
     win.blit(playtxt, (250,435))
     win.blit(quittxtsurface,quittxtsurfacerect)
