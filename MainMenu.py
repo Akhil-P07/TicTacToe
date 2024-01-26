@@ -36,7 +36,7 @@ while run:
     win.blit(playtxt, (250,435))
     win.blit(quittxtsurface,quittxtsurfacerect)
     win.blit(quittxt, (250,545))
-    win.blit(volumetxt.render("Volume: " + str(int((round(volume* 10) * 10))) +"%", True, "purple"), (480, 0) )
+    win.blit(volumetxt.render("Volume: " + str(int((round(volume* 10) * 10))) +"%", True, "purple"), (590, 0) )
 
     for event in pg.event.get():
         if event.type == pg.QUIT:
