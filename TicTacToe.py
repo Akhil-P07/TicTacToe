@@ -30,15 +30,15 @@ totalsymbols = [0,0]
 #Win function
 def winner(win):
     if win == 1:
-<<<<<<< HEAD
-        print("O")
+        return "O wins"
     elif win == 0:
-        print("X")
+        return "X wins" 
     else:
-        print("Draw")
-#Grid class
+        return "Draw"
+
 #Game loop
 def main():
+    winnersym = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -49,10 +49,13 @@ def main():
             if blockrect[i].collidepoint(mouse_pos):
                 if pg.key.get_pressed()[pg.K_x] and grid[i] == [0,0]:                
                     crossrect[i] = cross.get_rect(center = (blockcord[i]))
-                    grid[i] = [crossrect[i] , 0, blockcord[i], True]
+                    grid[i] = [crossrect[i] , 0, blockcord[i]]
                 elif pg.key.get_pressed()[pg.K_o] and grid[i] == [0,0]:
                     circlerect[i] = circle.get_rect(center = (blockcord[i]))
                     grid[i] = [circlerect[i], 1, blockcord[i]]
+
+        
+
         #No overlapping of cross
         for i in range(9):
             if grid[i] != 0:
@@ -60,60 +63,16 @@ def main():
                     win.blit(cross, crossrect[i])
                 elif grid[i][1] == 1:
                     win.blit(circle, circlerect[i])
-        
         if [0,0] not in grid:
             for i in range(9):
                 for j in range(9):
                     for k in range(9):
                         if (grid[i][1] == grid[j][1] == grid[k][1]) and ([i,j,k] in winpos):
-                            return winner(grid[i][1])
-                            
-            return winner(-1)
-
+                            winnersym = winner(grid[i][1])
+                            break
+            return(winnersym)
+        
         pg.display.update() 
-        Clock.tick(60)        
-=======
-        print("O wins")
-    elif win == 0:
-        print("X wins")
-    else:
-        print("Draw")
-#Game loop
-
-while True:
-    for event in pg.event.get():
-        if event.type == pg.QUIT:
-            quit()
-    mouse_pos = pg.mouse.get_pos()
-    for i in range(9):
-        win.blit(gridBlock, blockrect[i])
-        if blockrect[i].collidepoint(mouse_pos):
-            if pg.key.get_pressed()[pg.K_x] and grid[i] == [0,0]:                
-                crossrect[i] = cross.get_rect(center = (blockcord[i]))
-                grid[i] = [crossrect[i] , 0, blockcord[i]]
-            elif pg.key.get_pressed()[pg.K_o] and grid[i] == [0,0]:
-                circlerect[i] = circle.get_rect(center = (blockcord[i]))
-                grid[i] = [circlerect[i], 1, blockcord[i]]
-    #No overlapping of cross
-    for i in range(9):
-        if grid[i] != 0:
-            if grid[i][1] == 0:
-                win.blit(cross, crossrect[i])
-            elif grid[i][1] == 1:
-                win.blit(circle, circlerect[i])
+        Clock.tick(60)       
+     
     
-    if [0,0] not in grid:
-        for i in range(9):
-            for j in range(9):
-                for k in range(9):
-                    if (grid[i][1] == grid[j][1] == grid[k][1]) and ([i,j,k] in winpos):
-                        winner(grid[i][1])
-                        print(i,j,k)
-                        quit()
-        winner(-1)
-        quit()
-
-    pg.display.update() 
-    Clock.tick(60)        
-
->>>>>>> df3922aa790f6004e25011d96bd394b94281ecee

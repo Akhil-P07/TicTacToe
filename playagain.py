@@ -25,15 +25,17 @@ quittxtsurfacerect = retrytxtsurface.get_rect(center = (360,470))
 
 def playagain(winner):
     end = 0
+
     gamewinner = pg.font.Font("Exo_2\static\Exo2-SemiBold.ttf", 100)
     if winner == "Draw":
         gamewinner = gamewinner.render("Draw", True, "white")
         g_pos = (200,100)
     elif winner == None:
-        gamewinner = gamewinner.render("ERROR!: grid error".format(winner), True, "white")
-        g_pos = (200,100)
+        gamewinner = gamewinner.render("Error".format(winner), True, "white")
+        g_pos = (230,100)
     else:
         gamewinner = gamewinner.render("Player {} wins".format(winner), True, "white")
+        g_pos = (60,100)
 
 
     while end == 0:
@@ -43,8 +45,6 @@ def playagain(winner):
         win.blit(retrytxt, (230,295))
         win.blit(quittxtsurface,quittxtsurfacerect)
         win.blit(quittxt, (250,410))
-        quittxtsurface.fill("darkorchid2")
-        retrytxtsurface.fill("darkorchid2")
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 quit()
@@ -60,5 +60,8 @@ def playagain(winner):
             if pg.mouse.get_pressed()[0]:
                 retrytxtsurface.fill("indigo")
                 return 1
+        else:
+            quittxtsurface.fill("darkorchid2")
+            retrytxtsurface.fill("darkorchid2")
         pg.display.update()
         Clock.tick(60)

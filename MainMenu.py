@@ -67,13 +67,12 @@ def menuMain():
             quittxtsurface.fill("darkorchid4")
             if pg.mouse.get_pressed()[0]:
                 quittxtsurface.fill("indigo")
-                quit()
+                return 0
         elif playtxtsurfacerect.collidepoint(mouse_pos):
             playtxtsurface.fill("darkorchid4")
             if pg.mouse.get_pressed()[0]:
                 playtxtsurface.fill("indigo")
-                return 1
-                
+                return 1          
         else:
             quittxtsurface.fill("darkorchid2")
             playtxtsurface.fill("darkorchid2")
