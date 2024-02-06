@@ -30,15 +30,16 @@ totalsymbols = [0,0]
 #Win function
 def winner(win):
     if win == 1:
-        return "O wins"
+        return "O"
     elif win == 0:
-        return "X wins" 
+        return "X" 
     else:
         return "Draw"
 
 #Game loop
 def main():
     winnersym = 0
+    turn = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -47,12 +48,14 @@ def main():
         for i in range(9):
             win.blit(gridBlock, blockrect[i])
             if blockrect[i].collidepoint(mouse_pos):
-                if pg.key.get_pressed()[pg.K_x] and grid[i] == [0,0]:                
+                if pg.mouse.get_pressed()[0] and grid[i] == [0,0] and turn == 1:                
                     crossrect[i] = cross.get_rect(center = (blockcord[i]))
                     grid[i] = [crossrect[i] , 0, blockcord[i]]
-                elif pg.key.get_pressed()[pg.K_o] and grid[i] == [0,0]:
+                    turn = 0
+                elif pg.mouse.get_pressed()[0] and grid[i] == [0,0] and turn == 0:
                     circlerect[i] = circle.get_rect(center = (blockcord[i]))
                     grid[i] = [circlerect[i], 1, blockcord[i]]
+                    turn = 1
 
         
 
@@ -74,5 +77,3 @@ def main():
         
         pg.display.update() 
         Clock.tick(60)       
-     
-    
